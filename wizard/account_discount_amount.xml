@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="account_discount_amount_Wizard" model="ir.ui.view">
+        <field name="name">account.discount.amount.wizard</field>
+        <field name="model">account.discount.amount</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <group states="import">
+                    <field name="file_xlsx"/>
+                    <field name="discount_new"/>
+                </group>
+                <group states="view">
+                    <group colspan="4">
+                        <field name="invoice_line_ids" nolabel="1" readonly="1">
+                            <tree editable="bottom" >
+                                <field name="product_id"/>
+                                <field name="labell"/>
+                                <field name="account_id"/>
+                                <field name="price_unit"/>
+                                <field name="quantity"/>
+                                <field name="tax_id"/>
+                                <field name="discount_amount"/>
+                                <field name="price_subtotal"/>
+                                <!-- <field name="state" invisible="1"/> -->
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+                <footer states="import">
+                    <button name="import_file"
+                        string="Upload"
+                        type="object"
+                        class="oe_highlight"
+                        />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                <footer states="view">
+                    <button class="oe_highlight" string="Continue" name="done" type="object"/>
+                    <button string="Refresh" name="view_items" type="object"/> or
+                    <button class="oe_link" string="Cancel" special="cancel"/>
+                </footer>
+                <footer states="done">
+                    <button class="oe_highlight" string="Close" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import File</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.discount.amount</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

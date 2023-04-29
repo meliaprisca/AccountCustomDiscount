@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="account_move_lifepack_form">
+            <field name="name">account.move.lifepack.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]/field[@name='invoice_line_ids']" position="before">
+                    <button name="action_discount_amount"
+                        string="Upload XLSX File"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                </xpath>
+                <!-- <xpath expr="//notebook/page[1]/group[1]/field[@name='amount_by_group']" position="before">
+                    <field name="disc_total" attrs="{'invisible': [('amount_tax', '=', 0)]}"/>
+                </xpath> -->
+                <xpath expr="//notebook/page[1]/field[@name='invoice_line_ids']/tree/field[@name='discount']" position="before">
+                    <field name="discount_amount" string="Discount Amount"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
